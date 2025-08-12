@@ -2,6 +2,7 @@ import {calculateAverageRentOfPropertiesByRegion} from "./averageRent/averageRen
 import {Regions} from "./model/Property";
 import {formatCurrency} from "./utils/currencyFormatting";
 import {calculateMonthlyRentPerTenantForProperty, CurrencyUnit} from "./monthlyRentPerTenant/monthlyRentPerTenant";
+import {validatePostcodesOfProperties} from "./postcodeValidation/postcodeValidation";
 
 async function requirement1() {
   console.log("- Requirement 1");
@@ -32,9 +33,18 @@ async function requirement2() {
   );
 }
 
+async function requirement3() {
+  console.log("- Requirement 3");
+  const propertiesWithInvalidUKPostcodes = await validatePostcodesOfProperties()
+  propertiesWithInvalidUKPostcodes.forEach(propertyId => {
+    console.log(`Property ${propertyId} has an invalid postcode`);
+  })
+}
+
 async function main() {
   await requirement1();
   await requirement2();
+  await requirement3();
 }
 
 main().catch((error) => {
