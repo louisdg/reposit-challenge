@@ -1,13 +1,27 @@
 {
   "name": "reposit-challenge",
   "version": "1.0.0",
+  "author": {
+    "name": "Louis De Gaudenzi",
+    "email": "louis.degaudenzi@gmail.com"
+  },
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "run": "node dist/index.js",
+    "test": "jest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "csv-parse": "^6.1.0"
+  },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.2.1",
+    "jest": "^30.0.5",
+    "ts-jest": "^29.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
   },
   "private": true
