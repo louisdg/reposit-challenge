@@ -1,7 +1,7 @@
 import {calculateAverageRentOfPropertiesByRegion} from "./averageRent/averageRent";
 import {Regions} from "./model/Property";
 import {formatCurrency} from "./utils/currencyFormatting";
-import {calculateMonthlyRentPerTenantForProperty, CurrencyUnit} from "./monthlyRentPerTenant/monthlyRentPerTenant";
+import {calculateMonthlyRentPerTenantForProperty} from "./monthlyRentPerTenant/monthlyRentPerTenant";
 import {validatePostcodesOfProperties} from "./postcodeValidation/postcodeValidation";
 import {getStatusForProperty} from "./propertyStatus/propertyStatus";
 
@@ -58,6 +58,7 @@ async function requirement4() {
 }
 
 async function main() {
+  console.log("Reposit challenge")
   await requirement1();
   await requirement2();
   await requirement3();
