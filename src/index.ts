@@ -3,6 +3,7 @@ import {Regions} from "./model/Property";
 import {formatCurrency} from "./utils/currencyFormatting";
 import {calculateMonthlyRentPerTenantForProperty, CurrencyUnit} from "./monthlyRentPerTenant/monthlyRentPerTenant";
 import {validatePostcodesOfProperties} from "./postcodeValidation/postcodeValidation";
+import {getStatusForProperty} from "./propertyStatus/propertyStatus";
 
 async function requirement1() {
   console.log("- Requirement 1");
@@ -27,7 +28,7 @@ async function requirement2() {
         const monthlyRentPerTenant = await calculateMonthlyRentPerTenantForProperty(propertyId, "PENCE");
         console.log(`Monthly rent for property ${propertyId} is ${formatCurrency(monthlyRentPerTenant)}`);
       } catch (error) {
-        console.error(`Error calculating average rent: ${(error as Error).message}`);
+        console.error(`Error calculating monthly rent: ${(error as Error).message}`);
       }
     })
   );
@@ -41,10 +42,26 @@ async function requirement3() {
   })
 }
 
+async function requirement4() {
+  console.log("- Requirement 4");
+  const propertyIds = ["p_1029", "p_1002", "p_1022", "p_1004"];
+  await Promise.all(
+    propertyIds.map(async (propertyId) => {
+      try {
+        const propertyStatus = await getStatusForProperty(propertyId, new Date().toISOString());
+        console.log(`Status of property ${propertyId} is ${propertyStatus} today`);
+      } catch (error) {
+        console.error(`Error calculating property status: ${(error as Error).message}`);
+      }
+    })
+  );
+}
+
 async function main() {
   await requirement1();
   await requirement2();
   await requirement3();
+  await requirement4();
 }
 
 main().catch((error) => {
