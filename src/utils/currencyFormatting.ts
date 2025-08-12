@@ -8,7 +8,5 @@ export function formatCurrency(
   return (monetaryValueInPence / 100).toLocaleString("en-GB", {
     style: "currency",
     currency: "GBP",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 4,
   });
 }

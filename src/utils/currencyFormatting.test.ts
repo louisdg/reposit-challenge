@@ -13,16 +13,12 @@ describe("formatCurrency", () => {
     expect(formatCurrency(0)).toBe("£0.00");
   });
 
-  it("should keep up to four fractional pence", () => {
-    expect(formatCurrency(12340.67)).toBe("£123.4067");
+  it("should round down when more than two fractional pence", () => {
+    expect(formatCurrency(12340.3)).toBe("£123.40");
   });
 
-  it("should round down when more than four fractional pence", () => {
-    expect(formatCurrency(12340.673)).toBe("£123.4067");
-  });
-
-  it("should round up when more than four fractional pence", () => {
-    expect(formatCurrency(12340.678)).toBe("£123.4068");
+  it("should round up when more than two fractional pence", () => {
+    expect(formatCurrency(12340.8)).toBe("£123.41");
   });
 
   it("should handle large currency values", () => {
